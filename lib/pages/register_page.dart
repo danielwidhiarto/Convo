@@ -30,7 +30,7 @@ class _RegisterPageState extends State<RegisterPage> {
 
     try {
       await authService.signUpWithEmailAndPassword(
-          emailController.text, passwordController.text);
+          emailController.text, passwordController.text, usernameController.text);
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
