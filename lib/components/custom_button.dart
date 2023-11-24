@@ -16,14 +16,14 @@ class CustomButton extends StatelessWidget {
       onTap: onTap,
       child: Container(
         width: double.infinity, // Set width to fill available space
-        padding: EdgeInsets.all(16.0), // Add padding for better appearance
-        decoration: BoxDecoration(
+        padding: const EdgeInsets.all(16.0), // Add padding for better appearance
+        decoration: const BoxDecoration(
           color: Colors.black,
         ),
         child: Center(
           child: Text(
             text,
-            style: TextStyle(
+            style: const TextStyle(
               color: Colors.white,
             ),
           ),
