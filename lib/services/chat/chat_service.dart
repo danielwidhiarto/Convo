@@ -14,6 +14,8 @@ class ChatService extends ChangeNotifier {
     DocumentSnapshot userSnapshot =
     await FirebaseFirestore.instance.collection('users').doc(currentUserId).get();
 
+    final Timestamp timestamp = Timestamp.now();
+
     String currentUserUsername = userSnapshot['username'] ?? 'Unknown';
 
     Message newMessage = Message(
@@ -21,7 +23,7 @@ class ChatService extends ChangeNotifier {
       senderUsername: currentUserUsername,
       receiverId: receiverId,
       message: message,
-      timestamp: Timestamp.now().toString(),
+      timestamp: timestamp,
     );
 
     List<String> ids = [currentUserId, receiverId];
@@ -48,7 +50,7 @@ class ChatService extends ChangeNotifier {
         .collection('chat_rooms')
         .doc(chatRoomId)
         .collection('messages')
-        .orderBy('timestamp', descending: true)
+        .orderBy('timestamp', descending: false)
         .snapshots();
   }
 }

@@ -76,7 +76,7 @@ class _ChatPageState extends State<ChatPage> {
 
   Widget _buildMessageList() {
     return StreamBuilder(
-        stream: _chatService.getMessage(
+      stream: _chatService.getMessage(
           widget.receiveUserID, _firebaseAuth.currentUser!.uid),
       builder: (context, snapshot) {
         if (snapshot.hasError) {
@@ -84,13 +84,13 @@ class _ChatPageState extends State<ChatPage> {
         }
 
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return const Text ('Loading...');
+          return const Text('Loading...');
         }
 
         return ListView(
           children: snapshot.data!.docs
-          .map((document) => _buildMessageItem(document))
-          .toList(),
+              .map((document) => _buildMessageItem(document))
+              .toList(),
         );
       },
     );
@@ -100,22 +100,33 @@ class _ChatPageState extends State<ChatPage> {
     Map<String, dynamic> data = document.data() as Map<String, dynamic>;
 
     var alignment = (data['senderId'] == _firebaseAuth.currentUser!.uid)
-      ? Alignment.centerRight : Alignment.centerLeft;
+        ? Alignment.centerRight
+        : Alignment.centerLeft;
 
     return Container(
       alignment: alignment,
-      padding: const EdgeInsets.all(8.0),
-      child: Column (
-        crossAxisAlignment:  (data['senderId'] == _firebaseAuth.currentUser!.uid) ? CrossAxisAlignment.end
-        : CrossAxisAlignment.start,
-        mainAxisAlignment:  (data['senderId'] == _firebaseAuth.currentUser!.uid) ? MainAxisAlignment.end
-            : MainAxisAlignment.start,
-        children: [
-          Text(data['senderUsername']),
-          const SizedBox(height: 5,),
-          ChatBubble(message: data['message']),
-        ],
-      ),
+      child: Padding (
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          crossAxisAlignment:
+          (data['senderId'] == _firebaseAuth.currentUser!.uid)
+              ? CrossAxisAlignment.end
+              : CrossAxisAlignment.start,
+          mainAxisAlignment:
+          (data['senderId'] == _firebaseAuth.currentUser!.uid)
+              ? MainAxisAlignment.end
+              : MainAxisAlignment.start,
+          children: [
+            Text(data['senderUsername']),
+            const SizedBox(
+              height: 5,
+            ),
+            ChatBubble(message: data['message']),
+          ],
+        ),
+
+      )
+
     );
   }
 
