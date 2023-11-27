@@ -25,6 +25,7 @@ class _ChatPageState extends State<ChatPage> {
   final ChatService _chatService = ChatService();
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
   String username = ''; // New variable to store the username
+  DateTime? _previousTimestamp;
 
   void sendMessage() async {
     if (_messageController.text.isNotEmpty) {
@@ -103,6 +104,8 @@ class _ChatPageState extends State<ChatPage> {
         ? Alignment.centerRight
         : Alignment.centerLeft;
 
+    DateTime timestamp = (data['timestamp'] as Timestamp).toDate();
+
     return Container(
       alignment: alignment,
       child: Padding (
@@ -117,7 +120,20 @@ class _ChatPageState extends State<ChatPage> {
               ? MainAxisAlignment.end
               : MainAxisAlignment.start,
           children: [
-            Text(data['senderUsername']),
+            // Display sender's username and timestamp
+            Row(
+              mainAxisAlignment: (data['senderId'] == _firebaseAuth.currentUser!.uid)
+                  ? MainAxisAlignment.end
+                  : MainAxisAlignment.start,
+              children: [
+                Text(data['senderUsername']),
+                SizedBox(width: 8), // Add some spacing between username and timestamp
+                Text(
+                  _formatTimestamp(timestamp),
+                  style: TextStyle(fontSize: 12, color: Colors.grey),
+                ),
+              ],
+            ),
             const SizedBox(
               height: 5,
             ),
@@ -128,6 +144,13 @@ class _ChatPageState extends State<ChatPage> {
       )
 
     );
+  }
+
+  String _formatTimestamp(DateTime timestamp) {
+    // Format timestamp to display in a readable way
+    String formattedTime =
+        "${timestamp.hour}:${timestamp.minute.toString().padLeft(2, '0')}";
+    return formattedTime;
   }
 
   Widget _buildMessageInput() {
