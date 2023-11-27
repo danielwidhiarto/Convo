@@ -106,44 +106,50 @@ class _ChatPageState extends State<ChatPage> {
 
     DateTime timestamp = (data['timestamp'] as Timestamp).toDate();
 
+    bool showTimestamp = _shouldShowTimestamp(timestamp);
+    _previousTimestamp = timestamp;
+
     return Container(
       alignment: alignment,
-      child: Padding (
+      child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
-          crossAxisAlignment:
-          (data['senderId'] == _firebaseAuth.currentUser!.uid)
+          crossAxisAlignment: (data['senderId'] == _firebaseAuth.currentUser!.uid)
               ? CrossAxisAlignment.end
               : CrossAxisAlignment.start,
-          mainAxisAlignment:
-          (data['senderId'] == _firebaseAuth.currentUser!.uid)
+          mainAxisAlignment: (data['senderId'] == _firebaseAuth.currentUser!.uid)
               ? MainAxisAlignment.end
               : MainAxisAlignment.start,
           children: [
-            // Display sender's username and timestamp
-            Row(
-              mainAxisAlignment: (data['senderId'] == _firebaseAuth.currentUser!.uid)
-                  ? MainAxisAlignment.end
-                  : MainAxisAlignment.start,
-              children: [
-                Text(data['senderUsername']),
-                SizedBox(width: 8), // Add some spacing between username and timestamp
-                Text(
-                  _formatTimestamp(timestamp),
-                  style: TextStyle(fontSize: 12, color: Colors.grey),
-                ),
-              ],
-            ),
+            // Display sender's username and timestamp if it should be shown
+            if (showTimestamp) ...[
+              Row(
+                mainAxisAlignment: (data['senderId'] == _firebaseAuth.currentUser!.uid)
+                    ? MainAxisAlignment.end
+                    : MainAxisAlignment.start,
+                children: [
+                  // Text(data['senderUsername']),
+                  // SizedBox(width: 8),
+                  Text(
+                    _formatTimestamp(timestamp),
+                    style: TextStyle(fontSize: 12, color: Colors.grey),
+                  ),
+                ],
+              ),
+            ],
             const SizedBox(
               height: 5,
             ),
             ChatBubble(message: data['message']),
           ],
         ),
-
-      )
-
+      ),
     );
+  }
+
+  bool _shouldShowTimestamp(DateTime currentTimestamp) {
+    return _previousTimestamp == null ||
+        currentTimestamp.difference(_previousTimestamp!) > Duration(minutes: 1);
   }
 
   String _formatTimestamp(DateTime timestamp) {
