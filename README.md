@@ -4,13 +4,13 @@ Convo is a cross-platform chat application built with Flutter that enables seaml
 
 ## Features
 
-- Cross-platform compatibility: Enjoy Convo on both Android and iOS devices with a consistent and responsive user interface.
+- **Cross-platform compatibility**: Enjoy Convo on both Android and iOS devices with a consistent and responsive user interface.
 
 - **User Authentication**: Sign in securely with Firebase authentication using your email or Google account.
 
-- Real-time chat**: Engage in real-time conversations with friends and keep your chats synchronized across devices.
+- **Real-time chat**: Engage in real-time conversations with friends and keep your chats synchronized across devices.
 
-- Friend Search: Find friends by username and start conversations with ease.
+- **Friend Search**: Find friends by username and start conversations with ease.
 
 ## Getting started
 
