@@ -1,3 +1,7 @@
+# Rating
+
+[![CodeFactor](https://www.codefactor.io/repository/github/danielwidhiarto/convo/badge)](https://www.codefactor.io/repository/github/danielwidhiarto/convo)
+
 # Convo
 
 Convo is a cross-platform chat application built with Flutter that enables seamless communication between Android and iOS users. Find friends by their usernames and engage in real-time conversations powered by Firebase.
