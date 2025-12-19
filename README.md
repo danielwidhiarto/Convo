@@ -1,51 +1,234 @@
-# Rating
+<div align="center">
+
+# 💬 Convo
+
+### Real-Time Cross-Platform Chat Application
 
 [![CodeFactor](https://www.codefactor.io/repository/github/danielwidhiarto/convo/badge)](https://www.codefactor.io/repository/github/danielwidhiarto/convo)
+[![Flutter](https://img.shields.io/badge/Flutter-3.2.0+-02569B?logo=flutter)](https://flutter.dev)
+[![Firebase](https://img.shields.io/badge/Firebase-Latest-orange?logo=firebase)](https://firebase.google.com)
+[![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-# Convo
+_Connect with friends instantly across Android and iOS devices_
 
-Convo is a cross-platform chat application built with Flutter that enables seamless communication between Android and iOS users. Find friends by their usernames and engage in real-time conversations powered by Firebase.
+</div>
 
-## Features
+---
 
-- **Cross-platform compatibility**: Enjoy Convo on both Android and iOS devices with a consistent and responsive user interface.
+## 📖 About
 
-- **User Authentication**: Sign in securely with Firebase authentication using your email or Google account.
+**Convo** is a modern, cross-platform messaging application built with Flutter and powered by Firebase. It delivers seamless real-time communication with a beautiful, intuitive interface that works consistently across Android and iOS platforms. Find your friends by username and stay connected wherever you go!
 
-- **Real-time chat**: Engage in real-time conversations with friends and keep your chats synchronized across devices.
+## ✨ Key Features
 
-- **Friend Search**: Find friends by username and start conversations with ease.
+🔐 **Secure Authentication**
 
-## Getting started
+- Email and password-based registration
+- Firebase Authentication integration
+- Persistent user sessions
+- Username-based user profiles
 
-To run Convo on your local machine, follow these steps
+💬 **Real-Time Messaging**
 
-1. **Clone the repository**: Clone this repository to your local machine using `git clone https://github.com/danielwidhiarto/Convo.git`.
+- Instant message delivery with Firebase Firestore
+- Live synchronization across all devices
+- Message timestamps and sender information
+- Chat room management
 
-2. **Open in Flutter IDE**: Open the project in your preferred Flutter development environment (e.g. Visual Studio Code, Android Studio).
+👥 **User Discovery**
 
-3. **Install dependencies**: Run `flutter pub get' in the terminal to install the necessary dependencies.
+- Search users by username
+- Easy-to-use friend finder
+- Direct messaging capabilities
 
-4. **Configure Firebase**: Create a Firebase project and configure the `google-services.json' (for Android) and `GoogleService-Info.plist' (for iOS) files.
+📱 **Cross-Platform Support**
 
-5. **Run the application**: Build and run the application on your emulator or connected device.
+- Native Android application
+- Native iOS application
+- Consistent UI/UX across platforms
+- Responsive design for all screen sizes
 
-## Usage
+## 🛠️ Tech Stack
 
-- **User Authentication**: Log in with your email or Google account.
+- **Framework:** Flutter (SDK 3.2.0+)
+- **Backend:** Firebase
+  - Firebase Authentication
+  - Cloud Firestore
+  - Firebase Core
+- **State Management:** Provider
+- **Architecture:** Clean architecture with service layer separation
 
-- **Find Friends**: Search for friends by username and send chat invitations.
+## 📦 Dependencies
 
-- **Real-time messaging**: Enjoy real-time conversations with friends and stay connected on the go.
+```yaml
+firebase_core: ^2.23.0
+firebase_auth: ^4.14.1
+cloud_firestore: ^4.13.2
+provider: latest
+cupertino_icons: ^1.0.2
+```
 
-## Contribute
+## 🚀 Getting Started
 
-If you would like to contribute to the development of Convo, please fork the repository and submit a pull request. We welcome your contributions and feedback.
+### Prerequisites
 
-## Support and issues
+Before you begin, ensure you have the following installed:
 
-For support or to report issues, please open an issue on the [GitHub repository] (https://github.com/danielwidhiarto/Convo/issues). We welcome your feedback and help.
+- Flutter SDK (3.2.0 or higher)
+- Dart SDK
+- Android Studio / Xcode (for mobile development)
+- Firebase CLI (optional, for Firebase configuration)
 
-## Licence
+### Installation
 
-Convo is open-source software licensed under the [MIT License](LICENSE).
+1. **Clone the repository**
+
+   ```bash
+   git clone https://github.com/danielwidhiarto/Convo.git
+   cd Convo
+   ```
+
+2. **Install Flutter dependencies**
+
+   ```bash
+   flutter pub get
+   ```
+
+3. **Configure Firebase**
+
+   a. Create a new Firebase project at [Firebase Console](https://console.firebase.google.com/)
+
+   b. Enable the following Firebase services:
+
+   - Authentication (Email/Password)
+   - Cloud Firestore
+
+   c. Download configuration files:
+
+   - **Android:** Download `google-services.json` and place it in `android/app/`
+   - **iOS:** Download `GoogleService-Info.plist` and place it in `ios/Runner/`
+
+   d. Run FlutterFire CLI (recommended):
+
+   ```bash
+   flutterfire configure
+   ```
+
+4. **Set up Firestore Database**
+
+   Create the following collections in your Firebase Console:
+
+   - `users` - Stores user profiles (uid, email, username)
+   - `chat_rooms` - Stores chat conversations and messages
+
+5. **Run the application**
+
+   ```bash
+   # For Android
+   flutter run
+
+   # For iOS (macOS only)
+   flutter run -d ios
+
+   # For specific device
+   flutter devices
+   flutter run -d <device-id>
+   ```
+
+## 📱 Usage Guide
+
+### Registration
+
+1. Launch the app
+2. Tap "Register" or "Sign Up"
+3. Enter your email, password, and desired username
+4. Create your account
+
+### Logging In
+
+1. Enter your registered email and password
+2. Tap "Sign In" to access your account
+
+### Chatting
+
+1. From the home page, search for users by username
+2. Select a user to start a conversation
+3. Type your message and send
+4. Enjoy real-time messaging!
+
+## 📂 Project Structure
+
+```
+lib/
+├── main.dart                 # Application entry point
+├── firebase_options.dart     # Firebase configuration
+├── components/               # Reusable UI components
+│   ├── chat_bubble.dart     # Message bubble widget
+│   ├── custom_button.dart   # Custom button component
+│   └── text_field.dart      # Custom text field
+├── model/                    # Data models
+│   └── message.dart         # Message model
+├── pages/                    # Application screens
+│   ├── chat_page.dart       # Chat conversation screen
+│   ├── home_page.dart       # Main home screen
+│   ├── login_page.dart      # Login screen
+│   └── register_page.dart   # Registration screen
+└── services/                 # Business logic layer
+    ├── auth/                # Authentication services
+    │   ├── auth_gate.dart   # Auth state management
+    │   ├── auth_services.dart
+    │   └── login_or_register.dart
+    └── chat/                # Chat services
+        └── chat_service.dart
+```
+
+## 🤝 Contributing
+
+We welcome contributions from the community! Here's how you can help:
+
+1. **Fork** the repository
+2. **Create** a feature branch (`git checkout -b feature/AmazingFeature`)
+3. **Commit** your changes (`git commit -m 'Add some AmazingFeature'`)
+4. **Push** to the branch (`git push origin feature/AmazingFeature`)
+5. **Open** a Pull Request
+
+### Contribution Guidelines
+
+- Follow Flutter's style guide
+- Write clear commit messages
+- Add tests for new features
+- Update documentation as needed
+
+## 🐛 Bug Reports & Feature Requests
+
+Found a bug or have a feature suggestion? We'd love to hear from you!
+
+- **Issues:** [GitHub Issues](https://github.com/danielwidhiarto/Convo/issues)
+- Please check existing issues before creating a new one
+- Provide detailed information and steps to reproduce bugs
+
+## 📝 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 👨‍💻 Author
+
+**Daniel Widhiarto**
+
+- GitHub: [@danielwidhiarto](https://github.com/danielwidhiarto)
+
+## 🙏 Acknowledgments
+
+- Flutter team for the amazing framework
+- Firebase for backend infrastructure
+- All contributors who help improve this project
+
+---
+
+<div align="center">
+
+**Made with ❤️ using Flutter**
+
+_If you find this project helpful, please consider giving it a ⭐_
+
+</div>
