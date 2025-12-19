@@ -4,7 +4,6 @@
 
 ### Real-Time Cross-Platform Chat Application
 
-[![CodeFactor](https://www.codefactor.io/repository/github/danielwidhiarto/convo/badge)](https://www.codefactor.io/repository/github/danielwidhiarto/convo)
 [![Flutter](https://img.shields.io/badge/Flutter-3.2.0+-02569B?logo=flutter)](https://flutter.dev)
 [![Firebase](https://img.shields.io/badge/Firebase-Latest-orange?logo=firebase)](https://firebase.google.com)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
